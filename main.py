@@ -21,6 +21,7 @@ class Aa:
                      # down
                      [1, 0, -1], [0, -1, -1], [-1, 0, -1], [0, 1, -1]]
 
+        # all neighboring positions
         self.neigh = []
         for vect in self.vect:
             self.neigh.append(list(np.add(np.array(self.pos),np.array(vect))))
@@ -40,20 +41,27 @@ class Aa:
         :param otheraa:
         :return: true if two aa are neighbours
         """
-
-        distance = np.linalg.norm(np.array(self.pos)-np.array(otheraa.pos))
-        return distance == 2**0.5
+        return otheraa.pos in self.neigh
 
     def setPos(self,pos):
+
         self.pos = pos
+
+        self.neigh = []
+        for vect in self.vect:
+            self.neigh.append(list(np.add(np.array(self.pos), np.array(vect))))
+
 
     def poss_neigh(self,aalist):
         """
         returns all free neighboring positions given a list of aa's
         """
         availablespots = deepcopy(self.neigh)
+        # print("!!",self)
         for aa in aalist:
+            # print(aa)
             if aa.pos in availablespots:
+                # print(aa)
                 availablespots.remove(aa.pos)
 
         return availablespots
@@ -149,160 +157,148 @@ class Pep:
         """
         self.plot()
 
+        a_copy = deepcopy(self.aas)
         # choose a random aa
-
-        random_n = random.randrange(0, len(self.aas))
-        new_aa = self.aas[random_n]
+        random_n = random.randrange(0, len(a_copy))
+        new_aa = a_copy[random_n]
+        print("Original pos:",new_aa)
 
         # give the chosen aa a new free neighboring position
-        possible_position = new_aa.poss_neigh(self.aas)
+        possible_position = new_aa.poss_neigh(a_copy)
         random_pos = random.choice(possible_position)
         new_aa.setPos(random_pos)
 
         # makes it impossible to check the same position twice
         possible_position.remove(random_pos)
         print("N chosen, pos chosen",random_n,random_pos)
-        print("Aa chosen:",new_aa)
 
         # check only left aa
         if random_n == 0:
 
-            print(new_aa.pos)
             print(new_aa.neighbours(self.aas[random_n + 1]))
-            print(self.aas[random_n + 1])
+            print("!!!",self.aas[random_n + 1])
 
-            new_aa.setPos(random_pos)
+            self.aas[random_n] = new_aa
 
-            if new_aa.neighbours(self.aas[random_n + 1]):
+            dummy_aas = deepcopy(self.aas)
+            dummy_pos = deepcopy(self.aaspos)
 
-                self.aas[random_n] = new_aa
-                self.aaspos[random_n] = new_aa.pos
+            self.aaspos[random_n] = new_aa.pos
 
-                self.plot()
 
-            # pull left
-            else:
-                dummy_aas = []
-                dummy_pos = []
+            place = random_n # equal to 0
+            while place < len(self.aas)-1 and not self.aas[place].neighbours(self.aas[place+1]):
 
-                dummy_pos.append(new_aa)
+                aa = dummy_aas[place+1]
+                aa.setPos(dummy_pos[place])
 
-                for a in range(1,len(self.aas)):
+                self.aaspos[place+1] = aa.pos
+                self.aas[place+1] = aa
 
-                    aa = self.aas[a]
-                    aa.setPos(self.aaspos[a-1])
-                    dummy_aas.append(aa)
-                    dummy_pos.append(aa.pos)
+                place += 1
 
-                self.setAas(dummy_aas)
-                self.setAasPos(dummy_pos)
-
-                self.plot()
+            self.plot()
 
         # check only right aa
         elif random_n == len(self.aas)-1:
 
-            print("New position:",new_aa.pos)
             print("Is right aa neighbour?:",new_aa.neighbours(self.aas[random_n - 1]))
             print("Right neighbour:",self.aas[random_n - 1])
 
             new_aa.setPos(random_pos)
 
-            if new_aa.neighbours(self.aas[random_n - 1]):
+            self.aas[random_n] = new_aa
 
-                self.aas[random_n] = new_aa
-                self.aaspos[random_n] = random_pos
+            dummy_aas = deepcopy(self.aas)
+            dummy_pos = deepcopy(self.aaspos)
 
-                self.plot()
+            self.aaspos[random_n] = new_aa.pos
 
-            # pull right
-            else:
-                dummy_aas = []
-                dummy_pos = []
+            place = random_n  # equal to len(self.aas)-1
+            while place > 0 and not self.aas[place].neighbours(self.aas[place - 1]):
+                aa = dummy_aas[place - 1]
+                aa.setPos(dummy_pos[place])
 
-                for a in range(0, len(self.aas)-1):
-                    aa = self.aas[a]
-                    aa.setPos(self.aaspos[a + 1])
-                    dummy_aas.append(aa)
-                    dummy_pos.append(aa.pos)
+                self.aaspos[place - 1] = aa.pos
+                self.aas[place - 1] = aa
 
-                dummy_aas.append(new_aa)
-                dummy_pos.append(new_aa.pos)
+                place -= 1
 
-                self.setAas(dummy_aas)
-                self.setAasPos(dummy_pos)
-
-                self.plot()
+            self.plot()
 
         # check both
         else:
-            # while the random_pos is taken and there is no aa to be neighbours, generate a new position
-
+            # while the random_pos is taken and there is no aa to be neighbour, generate a new position
             while not any([new_aa.neighbours(self.aas[random_n+1]),new_aa.neighbours(self.aas[random_n-1])]):
                 random_pos = random.choice(possible_position)
                 possible_position.remove(random_pos)
                 new_aa.setPos(random_pos)
                 print("wtf")
 
-            print("New pos:",new_aa.pos)
-            print(new_aa.neighbours(self.aas[random_n+1]),new_aa.neighbours(self.aas[random_n-1]))
+            print("New aa:",new_aa)
             print("Left and right neighbour:",self.aas[random_n+1],self.aas[random_n-1])
+            print(new_aa.neighbours(self.aas[random_n+1]),new_aa.neighbours(self.aas[random_n-1]))
 
-            # if True then the move is already legal (self avoiding and connected to both)
-            if all([new_aa.neighbours(self.aas[random_n+1]),new_aa.neighbours(self.aas[random_n-1])]):
+            # if the aa to the left is still neighbours then pull all the right aas to the left
+            if new_aa.neighbours(self.aas[random_n - 1]):
+
+                new_aa.setPos(random_pos)
 
                 self.aas[random_n] = new_aa
+
+                dummy_aas = deepcopy(self.aas)
+                dummy_pos = deepcopy(self.aaspos)
+
                 self.aaspos[random_n] = new_aa.pos
+
+
+                place = random_n
+                while place < len(self.aas)-1 and not self.aas[place].neighbours(self.aas[place + 1]):
+
+                    if place == random_n:
+                        print(dummy_aas[place],dummy_pos[place])
+                    aa = dummy_aas[place + 1]
+                    aa.setPos(dummy_pos[place])
+
+                    self.aaspos[place + 1] = aa.pos
+                    self.aas[place + 1] = aa
+
+                    place += 1
+                print("Left and right neighbour:", self.aas[random_n + 1], self.aas[random_n - 1])
 
                 self.plot()
 
+            # if the aa to the right is still neighbours then pull all the left aas to the right
+            elif new_aa.neighbours(self.aas[random_n + 1]):
+
+                new_aa.setPos(random_pos)
+
+                self.aas[random_n] = new_aa
+
+                dummy_aas = deepcopy(self.aas)
+                dummy_pos = deepcopy(self.aaspos)
+
+                self.aaspos[random_n] = new_aa.pos
+
+                place = random_n
+                while place > 0 and not self.aas[place].neighbours(self.aas[place - 1]):
+                    if place == random_n:
+                        print(dummy_aas[place],dummy_pos[place])
+                    aa = dummy_aas[place - 1]
+                    aa.setPos(dummy_pos[place])
+
+                    self.aaspos[place - 1] = aa.pos
+                    self.aas[place - 1] = aa
+
+                    place -= 1
+
+                print("Left and right neighbour:", self.aas[random_n + 1], self.aas[random_n - 1])
+                self.plot()
+            # if both consecutive aas are already neighbours then no need to change all others aas
             else:
-                # if the aa to the left is still neighbours then pull all the right aas to the left
-                if new_aa.neighbours(self.aas[random_n - 1]):
-                    dummy_aas = []
-                    dummy_pos = []
-
-                    dummy_aas.extend(self.aas[:random_n])
-                    dummy_pos.extend(self.aaspos[:random_n])
-
-                    dummy_aas.append(new_aa)
-                    dummy_pos.append(new_aa.pos)
-
-                    for a in range(random_n+1, len(self.aas)):
-                        aa = self.aas[a]
-                        aa.setPos(self.aaspos[a - 1])
-                        dummy_aas.append(aa)
-                        dummy_pos.append(aa.pos)
-
-                    self.setAas(dummy_aas)
-                    self.setAasPos(dummy_pos)
-
-                    self.plot()
-
-
-                # if the aa to the right is still neighbours then pull all the left aas to the right
-                else:
-                    dummy_aas = []
-                    dummy_pos = []
-
-                    for a in range(0, random_n):
-                        aa = self.aas[a]
-                        aa.setPos(self.aaspos[a + 1])
-                        dummy_aas.append(aa)
-                        dummy_pos.append(aa.pos)
-
-                    dummy_aas.append(new_aa)
-                    dummy_pos.append(new_aa.pos)
-
-                    dummy_aas.extend(self.aas[random_n+1:])
-                    dummy_pos.extend(self.aaspos[random_n+1:])
-
-                    self.setAas(dummy_aas)
-                    self.setAasPos(dummy_pos)
-
-                    self.plot()
-
-                return 1
+                self.aas[random_n] = new_aa
+                self.aaspos[random_n] = new_aa.pos
+                print("Left and right neighbour:", self.aas[random_n + 1], self.aas[random_n - 1])
 
     def crossover(self,other_pep):
         pass
@@ -326,9 +322,9 @@ class Pep:
         ax.scatter3D(xline[-1], yline[-1], zline[-1], color="r")
 
         axes = plt.gca()
-        axes.set_xlim([-10, 10])
-        axes.set_ylim([-10, 10])
-        axes.set_zlim([-10, 10])
+        axes.set_xlim([-5, 5])
+        axes.set_ylim([-5, 5])
+        axes.set_zlim([-5, 5])
 
         # ax.set_axis_off()
 

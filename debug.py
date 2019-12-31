@@ -9,7 +9,7 @@ new = [a,b,c,d]
 #
 # newPep = Pep(new)
 # newPep.aaspos
-Pep = Pep([],"011000000")
+Pep = Pep([],"0011101000")
 # Pep.plot()
 Pep.mutate()
 # Pep.plot()
@@ -21,9 +21,13 @@ Pep.mutate()
 # fit = newPep.fitness()
 # print(random_fit,fit)
 
-pop = Pop("011110011001101010110000101101111000001110000",100,2,0.4)
+pop = Pop("0110110000101101111000001110000",100,2,0.4)
 
 # ll = pop.selection()
 # print(ll[0].fitness(),ll[1].fitness())
 # for i in pop.pop:
 #     print(i.fitness())
+
+
+for i in Pep.aas:
+    print(i)

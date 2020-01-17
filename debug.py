@@ -9,9 +9,9 @@ new = [a,b,c,d]
 #
 # newPep = Pep(new)
 # newPep.aaspos
-Pep = Pep([],"0011101000")
+Pep1 = Pep([],"0011101000")
+Pep2 = Pep([],"0011101000")
 # Pep.plot()
-Pep.mutate()
 # Pep.plot()
 #
 #
@@ -21,13 +21,27 @@ Pep.mutate()
 # fit = newPep.fitness()
 # print(random_fit,fit)
 
-pop = Pop("0110110000101101111000001110000",100,2,0.4)
+pop = Pop.random_init("0110110000101101111000001110000",100,3,0.4)
 
-# ll = pop.selection()
-# print(ll[0].fitness(),ll[1].fitness())
-# for i in pop.pop:
-#     print(i.fitness())
+# Pep2 = Pep.mutate()
+
+for a,b in zip(Pep2.aas,Pep1.aas):
+    print(a,b)
 
 
-for i in Pep.aas:
-    print(i)
+
+pep1, pep2 = Pep1.crossover(Pep2)
+
+for a,b in zip(pep2.aas,pep1.aas):
+    print("child2:",a,"child1:",b)
+
+
+for a in range(len(pep2.aas)-1):
+    print(pep2.aas[a].neighbours(pep2.aas[a+1]))
+    print(pep1.aas[a].neighbours(pep1.aas[a+1]))
+
+
+Pep1.plot(1,4)
+Pep2.plot(2,4)
+pep1.plot(3,4)
+pep2.plot(4,4)

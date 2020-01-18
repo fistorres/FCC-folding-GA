@@ -29,7 +29,6 @@ class Aa:
 
     def consecutive(self,otheraa):
         """
-        :param self:
         :param otheraa: other aa object
         :return: are two aa neighbourss
         """
@@ -39,7 +38,7 @@ class Aa:
     # |xi − xj|+|yi − yj|+|zi − zj| = 2 and |i - j| > 1
     def neighbours(self,otheraa):
         """
-        :param otheraa:
+        :param otheraa: other Aa object
         :return: true if two aa are neighbours
         """
         return otheraa.pos in self.neigh
@@ -80,6 +79,8 @@ class Pep:
         :param aas: list od aa's object
         """
         self.aas = aas
+        self.length = len(self.aas)
+
         self.seq = seq
         # vector to neighbourss
                      # same plane
@@ -89,6 +90,7 @@ class Pep:
                      # down
                      [1, 0, -1], [0, -1, -1], [-1, 0, -1], [0, 1, -1]]
 
+        # random initialization
         if len(aas) == 0:
             self.aaspos = []
 
@@ -126,30 +128,39 @@ class Pep:
     def setAasPos(self,aasplist):
         self.aaspos = aasplist
 
+
     def fitness(self):
+        """
+        :return: how many HH bonds there is whitin one peptide/chromossome
+        """
         HHbonds = 0
+        for aa in range(self.length):
+            monomer = self.aas[aa]
 
-        for aa in self.aas:
-            # if aa is H then
-            if aa.bin == "0":
-                index_aa = self.aas.index(aa)
+            if monomer.bin == "0":
 
-                # compute every possible position for bonding
-                for v in self.vect:
-                    possibleHH = list(np.add(np.array(aa.pos),np.array(v)))
+                # neighbouring positions to the monomer
+                for neighbour in monomer.neigh:
 
-                    # if there is aa in that position
-                    # search only furthers aa's
-                    if possibleHH in self.aaspos:
-                        index_HH = self.aaspos.index(possibleHH)
-                        other_aa = self.aas[index_HH]
+                    # if that position is in use
+                    if neighbour in self.aaspos[aa:]:
 
-                        # if that aa is also a H and aa+other_aa are not neighbourss:
-                        if other_aa.bin == "0" and not aa.consecutive(other_aa):
+                        possibleHH = self.aaspos.index(neighbour)
+                        possibleHH = self.aas[possibleHH]
+
+                        # check if it is also "H" and if it is not consecutive
+                        if possibleHH.bin == "0" and not monomer.consecutive(possibleHH):
                             HHbonds += 1
 
-            return HHbonds
+        return HHbonds
 
+
+
+
+
+
+
+        return HHbonds
     # by pull move
     def mutate(self):
         """
@@ -165,9 +176,17 @@ class Pep:
         # print(random_n)
         # give the chosen aa a new free neighboring position
         possible_position = new_aa.poss_neigh(a_copy)
-        while len(possible_position) == 0:
-            random_n = random.randrange(0, len(a_copy))
+        chosen_n = [a for a in range(1, len(a_copy) - 1)]
+        while len(possible_position) == 0 and len(chosen_n) != 0:
+            print("?")
+            random_n = random.choice(chosen_n)
             new_aa = a_copy[random_n]
+            chosen_n.remove(random_n)
+            # print(random_n)
+
+        if len(chosen_n) == 0:
+            return self
+
 
         random_pos = random.choice(possible_position)
         new_aa = new_aa.setPos(random_pos)
@@ -226,27 +245,27 @@ class Pep:
 
         else:
             # while there is no aa to be neighbour, generate a new position
-            try:
-                chosen_n = [a for a in range(1,len(a_copy)-1)]
-                while not any([new_aa.neighbours(a_copy[random_n+1]), new_aa.neighbours(a_copy[random_n-1])]):
-                    if len(chosen_n) == 0:
-                        print("break loop")
+            while not any([new_aa.neighbours(a_copy[random_n+1]), new_aa.neighbours(a_copy[random_n-1])]):
+                if len(chosen_n) == 0:
+                        # print("break loop")
                         return self
-                    if len(possible_position) == 0:
-                        print("happend")
+                if len(possible_position) == 0:
+                        # print("happend")
+
                         random_n = random.choice(chosen_n)
+                        # print(random_n)
+
                         chosen_n.remove(random_n)
 
                         new_aa = a_copy[random_n]
                         possible_position = new_aa.poss_neigh(a_copy)
 
-                    random_pos = random.choice(possible_position)
-                    possible_position.remove(random_pos)
-                    new_aa = new_aa.setPos(random_pos)
+                if len(possible_position) == 0:
+                    return self
+                random_pos = random.choice(possible_position)
+                possible_position.remove(random_pos)
+                new_aa = new_aa.setPos(random_pos)
 
-
-            except IndexError:
-                print(random_n)
 
             # print("right,left")
             # print(new_aa.neighbours(self.aas[random_n+1]), new_aa.neighbours(self.aas[random_n-1]))
@@ -305,6 +324,9 @@ class Pep:
                 return Pep(a_copy)
 
     def crossover(self, other_pep):
+        """
+        :param other_pep: Other Pep object
+        """
         random_aa = int(random.uniform(1, len(self.aas)-1))
         parent1 = deepcopy(self.aas)
         parent2 = deepcopy(other_pep.aas)
@@ -329,7 +351,9 @@ class Pep:
             child1_aa = child1_aa.setPos(new_pos_c1)
             child2_aa = child2_aa.setPos(new_pos_c2)
 
-            if child1_aa in child1[:random_aa+1] or child2_aa in child2[:random_aa+1]:
+            child1_pos = list(map(lambda x: x.pos, child1[:random_aa+1]))
+            child2_pos = list(map(lambda x: x.pos, child2[:random_aa+1]))
+            if child1_aa.pos in child1_pos or child2_aa.pos in child2_pos:
                 return self, other_pep
 
 
@@ -342,6 +366,12 @@ class Pep:
 
 
     def plot(self,x,y):
+        """
+        x,y are because matplotlib asks for the amount of plots in order to plot at the same time
+        :param x: kth plot
+        :param y: total number of plots
+        :return:
+        """
 
 
         fig = plt.figure(figsize=plt.figaspect(1/y))
@@ -350,10 +380,17 @@ class Pep:
 
         zline, xline, yline = [],[],[]
 
+        # highest = 0
         for point in self.aaspos:
             xline.append(point[0])
             yline.append(point[1])
             zline.append(point[2])
+            # if point[0] > highest:
+            #     highest = point[0]
+            # if point[1] > highest:
+            #     highest = point[0]
+            # if point[2] > highest:
+            #     highest = point[0]
 
         # lines
         ax.plot3D(xline, yline, zline)
@@ -362,10 +399,10 @@ class Pep:
         ax.scatter3D(xline[0], yline[0], zline[0], color="k")
         ax.scatter3D(xline[-1], yline[-1], zline[-1], color="r")
 
-        axes = plt.gca()
-        axes.set_xlim([-5, 5])
-        axes.set_ylim([-5, 5])
-        axes.set_zlim([-5, 5])
+        # axes = plt.gca()
+        # axes.set_xlim([-highest, highest])
+        # axes.set_ylim([-highest, highest])
+        # axes.set_zlim([-highest, highest])
 
         #ax.set_axis_off()
         if x == y:

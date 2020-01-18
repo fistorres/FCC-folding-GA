@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf9582f5-71d0-4967-ab53-b72be4e5595d" name="Default Changelist" comment="folder">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="cf9582f5-71d0-4967-ab53-b72be4e5595d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/benchmarking.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/projeto VA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projeto VA.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug.py" beforeDir="false" afterPath="$PROJECT_DIR$/debug.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pop.py" beforeDir="false" afterPath="$PROJECT_DIR$/pop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pop.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ga.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +52,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../fcul/3A2S/PROGII/projetoII/cyberConc.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -67,7 +68,26 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pop">
+  <component name="RunManager" selected="Python.debug">
+    <configuration name="Ga" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="projeto VA" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Sofia Torres\Desktop\mestrado\projeto VA\Ga.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="projeto VA" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -122,7 +142,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/debug.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Sofia Torres\Desktop\mestrado\projeto VA\benchmarking.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -197,29 +217,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pop" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="projeto VA" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pop.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.pop" />
         <item itemvalue="Python.debug" />
+        <item itemvalue="Python.Ga" />
         <item itemvalue="Python.fe" />
         <item itemvalue="Python.ploting" />
         <item itemvalue="Python.Main" />
@@ -265,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577746876108</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="folder">
+      <created>1579229481525</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1579229481526</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -292,71 +300,80 @@
       <screen x="0" y="0" width="1214" height="720" />
     </state>
     <state x="376" y="15" key="#main/0.0.1214.720@0.0.1214.720" timestamp="1578584574140" />
-    <state width="1197" height="383" key="GridCell.Tab.0.bottom" timestamp="1579222673374">
+    <state x="278" y="0" key="CommitChangelistDialog2" timestamp="1579229479248">
+      <screen x="0" y="0" width="1218" height="720" />
+    </state>
+    <state x="278" y="0" key="CommitChangelistDialog2/0.0.1218.720@0.0.1218.720" timestamp="1579229479248" />
+    <state x="391" y="120" key="FileChooserDialogImpl" timestamp="1579303896245">
+      <screen x="0" y="0" width="1218" height="720" />
+    </state>
+    <state x="391" y="120" key="FileChooserDialogImpl/0.0.1218.720@0.0.1218.720" timestamp="1579303896245" />
+    <state width="598" height="211" key="GridCell.Tab.0.bottom" timestamp="1579322086978">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state width="1184" height="198" key="GridCell.Tab.0.bottom/0.0.1206.720@0.0.1206.720" timestamp="1579100196958" />
     <state width="1193" height="198" key="GridCell.Tab.0.bottom/0.0.1214.720@0.0.1214.720" timestamp="1578591006569" />
-    <state width="1197" height="383" key="GridCell.Tab.0.bottom/0.0.1218.720@0.0.1218.720" timestamp="1579222673374" />
-    <state width="1197" height="383" key="GridCell.Tab.0.center" timestamp="1579222673373">
+    <state width="598" height="211" key="GridCell.Tab.0.bottom/0.0.1218.720@0.0.1218.720" timestamp="1579322086978" />
+    <state width="598" height="211" key="GridCell.Tab.0.center" timestamp="1579322086978">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state width="1184" height="198" key="GridCell.Tab.0.center/0.0.1206.720@0.0.1206.720" timestamp="1579100196958" />
     <state width="1193" height="198" key="GridCell.Tab.0.center/0.0.1214.720@0.0.1214.720" timestamp="1578591006568" />
-    <state width="1197" height="383" key="GridCell.Tab.0.center/0.0.1218.720@0.0.1218.720" timestamp="1579222673373" />
-    <state width="1197" height="383" key="GridCell.Tab.0.left" timestamp="1579222673373">
+    <state width="598" height="211" key="GridCell.Tab.0.center/0.0.1218.720@0.0.1218.720" timestamp="1579322086978" />
+    <state width="598" height="211" key="GridCell.Tab.0.left" timestamp="1579322086978">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state width="1184" height="198" key="GridCell.Tab.0.left/0.0.1206.720@0.0.1206.720" timestamp="1579100196958" />
     <state width="1193" height="198" key="GridCell.Tab.0.left/0.0.1214.720@0.0.1214.720" timestamp="1578591006568" />
-    <state width="1197" height="383" key="GridCell.Tab.0.left/0.0.1218.720@0.0.1218.720" timestamp="1579222673373" />
-    <state width="1197" height="383" key="GridCell.Tab.0.right" timestamp="1579222673373">
+    <state width="598" height="211" key="GridCell.Tab.0.left/0.0.1218.720@0.0.1218.720" timestamp="1579322086978" />
+    <state width="598" height="211" key="GridCell.Tab.0.right" timestamp="1579322086978">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state width="1184" height="198" key="GridCell.Tab.0.right/0.0.1206.720@0.0.1206.720" timestamp="1579100196958" />
     <state width="1193" height="198" key="GridCell.Tab.0.right/0.0.1214.720@0.0.1214.720" timestamp="1578591006569" />
-    <state width="1197" height="383" key="GridCell.Tab.0.right/0.0.1218.720@0.0.1218.720" timestamp="1579222673373" />
-    <state width="1197" height="383" key="GridCell.Tab.1.bottom" timestamp="1579222673374">
+    <state width="598" height="211" key="GridCell.Tab.0.right/0.0.1218.720@0.0.1218.720" timestamp="1579322086978" />
+    <state width="598" height="211" key="GridCell.Tab.1.bottom" timestamp="1579322086978">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state width="1184" height="198" key="GridCell.Tab.1.bottom/0.0.1206.720@0.0.1206.720" timestamp="1579100196959" />
     <state width="1193" height="198" key="GridCell.Tab.1.bottom/0.0.1214.720@0.0.1214.720" timestamp="1578591006569" />
-    <state width="1197" height="383" key="GridCell.Tab.1.bottom/0.0.1218.720@0.0.1218.720" timestamp="1579222673374" />
-    <state width="1197" height="383" key="GridCell.Tab.1.center" timestamp="1579222673374">
+    <state width="598" height="211" key="GridCell.Tab.1.bottom/0.0.1218.720@0.0.1218.720" timestamp="1579322086978" />
+    <state width="598" height="211" key="GridCell.Tab.1.center" timestamp="1579322086978">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state width="1184" height="198" key="GridCell.Tab.1.center/0.0.1206.720@0.0.1206.720" timestamp="1579100196959" />
     <state width="1193" height="198" key="GridCell.Tab.1.center/0.0.1214.720@0.0.1214.720" timestamp="1578591006569" />
-    <state width="1197" height="383" key="GridCell.Tab.1.center/0.0.1218.720@0.0.1218.720" timestamp="1579222673374" />
-    <state width="1197" height="383" key="GridCell.Tab.1.left" timestamp="1579222673374">
+    <state width="598" height="211" key="GridCell.Tab.1.center/0.0.1218.720@0.0.1218.720" timestamp="1579322086978" />
+    <state width="598" height="211" key="GridCell.Tab.1.left" timestamp="1579322086978">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state width="1184" height="198" key="GridCell.Tab.1.left/0.0.1206.720@0.0.1206.720" timestamp="1579100196958" />
     <state width="1193" height="198" key="GridCell.Tab.1.left/0.0.1214.720@0.0.1214.720" timestamp="1578591006569" />
-    <state width="1197" height="383" key="GridCell.Tab.1.left/0.0.1218.720@0.0.1218.720" timestamp="1579222673374" />
-    <state width="1197" height="383" key="GridCell.Tab.1.right" timestamp="1579222673374">
+    <state width="598" height="211" key="GridCell.Tab.1.left/0.0.1218.720@0.0.1218.720" timestamp="1579322086978" />
+    <state width="598" height="211" key="GridCell.Tab.1.right" timestamp="1579322086978">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state width="1184" height="198" key="GridCell.Tab.1.right/0.0.1206.720@0.0.1206.720" timestamp="1579100196959" />
     <state width="1193" height="198" key="GridCell.Tab.1.right/0.0.1214.720@0.0.1214.720" timestamp="1578591006569" />
-    <state width="1197" height="383" key="GridCell.Tab.1.right/0.0.1218.720@0.0.1218.720" timestamp="1579222673374" />
+    <state width="598" height="211" key="GridCell.Tab.1.right/0.0.1218.720@0.0.1218.720" timestamp="1579322086978" />
     <state x="119" y="7" key="SettingsEditor" timestamp="1578340994772">
       <screen x="0" y="0" width="1214" height="720" />
     </state>
     <state x="119" y="7" key="SettingsEditor/0.0.1214.720@0.0.1214.720" timestamp="1578340994772" />
-    <state x="203" y="98" key="Vcs.Push.Dialog.v2" timestamp="1579229436626">
+    <state x="203" y="98" key="Vcs.Push.Dialog.v2" timestamp="1579229488581">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
-    <state x="203" y="98" key="Vcs.Push.Dialog.v2/0.0.1218.720@0.0.1218.720" timestamp="1579229436626" />
+    <state x="203" y="98" key="Vcs.Push.Dialog.v2/0.0.1218.720@0.0.1218.720" timestamp="1579229488581" />
     <state x="131" y="70" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1579222648513">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state x="131" y="70" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1218.720@0.0.1218.720" timestamp="1579222648513" />
-    <state x="310" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1579185256339">
-      <screen x="0" y="0" width="1206" height="720" />
+    <state x="313" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1579275201891">
+      <screen x="0" y="0" width="1218" height="720" />
     </state>
     <state x="310" y="190" key="com.intellij.ide.util.TipDialog/0.0.1206.720@0.0.1206.720" timestamp="1579185256339" />
     <state x="312" y="190" key="com.intellij.ide.util.TipDialog/0.0.1214.720@0.0.1214.720" timestamp="1578584678100" />
+    <state x="313" y="190" key="com.intellij.ide.util.TipDialog/0.0.1218.720@0.0.1218.720" timestamp="1579275201891" />
     <state x="422" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579229422333">
       <screen x="0" y="0" width="1218" height="720" />
     </state>
@@ -373,5 +390,16 @@
       <screen x="0" y="0" width="1214" height="720" />
     </state>
     <state x="270" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1214.720@0.0.1214.720" timestamp="1578341314280" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Ga.py</url>
+          <line>104</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

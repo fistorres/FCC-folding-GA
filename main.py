@@ -154,13 +154,6 @@ class Pep:
 
         return HHbonds
 
-
-
-
-
-
-
-        return HHbonds
     # by pull move
     def mutate(self):
         """

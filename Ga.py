@@ -208,7 +208,7 @@ def runGa(iterations,fitness,seqHP,n,k,c,t=None):
 
 
 # ll = runGa(400,50,"HPHPPHHPHPPHPHHPPHPH",100,4,0.5,0.8)
-# iterations, fitness, sequence, size, k, cross, mutation = sys.argv[1:]
+iterations, fitness, sequence, size, k, cross, mutation = sys.argv[1:]
 
-# runGa(int(iterations),int(fitness),sequence,int(size),int(k),float(cross),float(mutation))
+runGa(int(iterations),int(fitness),sequence,int(size),int(k),float(cross),float(mutation))
 
